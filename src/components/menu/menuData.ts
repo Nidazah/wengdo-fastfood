@@ -2,7 +2,7 @@ export const menuItems = [
   {
     id: 1,
     name: "Classic Burger",
-    image: "/images/menu/Classic Burger-Photoroom.png",
+    image: "/images/menu/Classic-Burger-Photoroom.png",
     price: 18,
     rating: 4.8,
     badge: "Popular",
@@ -10,7 +10,7 @@ export const menuItems = [
   {
     id: 2,
     name: "Cheese Burger",
-    image: "/images/menu/Cheese Burger-Photoroom.png",
+    image: "/images/menu/Cheese-Burger-Photoroom.png",
     price: 22,
     rating: 4.9,
     badge: "Hot",
@@ -18,7 +18,7 @@ export const menuItems = [
   {
     id: 3,
     name: "Chicken Burger",
-    image: "/images/menu/Chicken Sandwich-Photoroom.png",
+    image: "/images/menu/Chicken-Sandwich-Photoroom.png",
     price: 20,
     rating: 4.7,
     badge: "New",
@@ -26,7 +26,7 @@ export const menuItems = [
   {
     id: 4,
     name: "Pepper Pizza",
-    image: "/images/menu/peper pizza-Photoroom.png",
+    image: "/images/menu/peper-pizza-Photoroom.png",
     price: 25,
     rating: 4.9,
     badge: "Best",
@@ -34,7 +34,7 @@ export const menuItems = [
   {
     id: 5,
     name: "Club Sandwich",
-    image: "/images/menu/Club Sandwich-Photoroom.png",
+    image: "/images/menu/Club-Sandwich-Photoroom.png",
     price: 16,
     rating: 4.8,
     badge: "Chef",
@@ -42,7 +42,7 @@ export const menuItems = [
   {
     id: 6,
     name: "French Fries",
-    image: "/images/menu/French Fries-Photoroom copy.png",
+    image: "/images/menu/French-Fries-Photoroom copy.png",
     price: 10,
     rating: 4.7,
     badge: "Fresh",

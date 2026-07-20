@@ -13,7 +13,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 1,
     name: "Classic Beef Burger",
-    image: "/images/menu/Classic Burger-Photoroom.png",
+    image: "/images/menu/Classic-Burger-Photoroom.png",
     category: "Burger",
     price: 12,
     rating: 5,
@@ -24,7 +24,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 2,
     name: "Pepperoni Pizza",
-    image: "/images/menu/Pepperoni Pizza-Photoroom.png",
+    image: "/images/menu/Pepperoni-Pizza-Photoroom.png",
     category: "Pizza",
     price: 18,
     rating: 5,
@@ -35,7 +35,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 3,
     name: "Fried Chicken",
-    image: "/images/menu/Fried Chicken-Photoroom.png",
+    image: "/images/menu/Fried-Chicken-Photoroom.png",
     category: "Chicken",
     price: 14,
     rating: 5,
@@ -45,7 +45,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 4,
     name: "Club Sandwich",
-    image: "/images/menu/Club Sandwich-Photoroom.png",
+    image: "/images/menu/Club-Sandwich-Photoroom.png",
     category: "Sandwich",
     price: 10,
     rating: 5,
@@ -65,7 +65,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 6,
     name: "BBQ Pizza",
-    image: "/images/menu/BBQ Pizza-Photoroom.png",
+    image: "/images/menu/BBQ-Pizza-Photoroom.png",
     category: "Pizza",
     price: 20,
     rating: 5,
@@ -75,7 +75,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 7,
     name: "Chicken Sandwich",
-    image: "/images/menu/Chicken Sandwich-Photoroom.png",
+    image: "/images/menu/Chicken-Sandwich-Photoroom.png",
     category: "Sandwich",
     price: 11,
     rating: 5,
@@ -85,7 +85,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 8,
     name: "Veggie Pizza",
-    image: "/images/menu/Veggie Pizza-Photoroom.png",
+    image: "/images/menu/Veggie-Pizza-Photoroom.png",
     category: "Pizza",
     price: 17,
     rating: 5,
@@ -95,7 +95,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 9,
     name: "Chicken Bucket",
-    image: "/images/menu/Chicken Bucket-Photoroom.png",
+    image: "/images/menu/Chicken-Bucket-Photoroom.png",
     category: "Chicken",
     price: 22,
     rating: 5,

@@ -19,7 +19,7 @@ export const products: Product[] = [
   {
     id: 1,
     name: "Classic Burger",
-    image: "/images/shop/Classic Burger-Photoroom.png",
+    image: "/images/shop/Classic-Burger-Photoroom.png",
     price: 12,
     sale: true,
     rating: 5,
@@ -50,7 +50,7 @@ export const products: Product[] = [
   {
     id: 2,
     name: "Pepperoni Pizza",
-    image: "/images/shop/Pepperoni Pizza-Photoroom.png",
+    image: "/images/shop/Pepperoni-Pizza-Photoroom.png",
     price: 18,
     sale: false,
     rating: 5,
@@ -78,7 +78,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: "Chicken Bucket",
-    image: "/images/shop/Chicken Bucket-Photoroom.png",
+    image: "/images/shop/Chicken-Bucket-Photoroom.png",
     price: 22,
     sale: true,
     rating: 5,
@@ -106,7 +106,7 @@ export const products: Product[] = [
   {
     id: 4,
     name: "French Fries",
-    image: "/images/shop/French Fries-Photoroom.png",
+    image: "/images/shop/French-Fries-Photoroom.png",
     price: 8,
     sale: false,
     rating: 5,
@@ -132,7 +132,7 @@ export const products: Product[] = [
   {
     id: 5,
     name: "Chicken Sandwich",
-    image: "/images/shop/Chicken Sandwich-Photoroom.png",
+    image: "/images/shop/Chicken-Sandwich-Photoroom.png",
     price: 10,
     sale: false,
     rating: 5,
@@ -161,7 +161,7 @@ export const products: Product[] = [
   {
     id: 6,
     name: "Soft Drink",
-    image: "/images/shop/Soft Drinks-Photoroom.png",
+    image: "/images/shop/Soft-Drinks-Photoroom.png",
     price: 5,
     sale: true,
     rating: 5,

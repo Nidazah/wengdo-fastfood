@@ -23,9 +23,17 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
   const { cart } = useCart();
   const { wishlist } = useWishlist();
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -116,7 +124,7 @@ export default function Header() {
               >
                 <Heart size={20} />
 
-                {wishlist.length > 0 && (
+                {mounted && wishlist.length > 0 && (
                   <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
                     {wishlist.length}
                   </span>
@@ -129,9 +137,9 @@ export default function Header() {
               >
                 <ShoppingCart size={20} />
 
-                {cart.length > 0 && (
+                {mounted && totalItems > 0 && (
                   <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
-                    {cart.length}
+                    {totalItems}
                   </span>
                 )}
               </button>
@@ -225,7 +233,7 @@ export default function Header() {
                 >
                   <Heart size={20} />
 
-                  {wishlist.length > 0 && (
+                  {mounted && wishlist.length > 0 && (
                     <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
                       {wishlist.length}
                     </span>
@@ -241,9 +249,9 @@ export default function Header() {
                 >
                   <ShoppingCart size={20} />
 
-                  {cart.length > 0 && (
+                  {mounted && totalItems > 0 && (
                     <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
-                      {cart.length}
+                      {totalItems}
                     </span>
                   )}
                 </button>
