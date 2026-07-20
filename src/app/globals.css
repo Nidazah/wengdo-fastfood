@@ -1,26 +1,210 @@
 @import "tailwindcss";
 
+/* ===========================
+   Wengdo Design System
+=========================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #ffd54a;
+  --secondary: #ff6b00;
+  --dark: #171717;
+  --light: #fff8ee;
+  --gray: #6b7280;
+  --white: #ffffff;
+
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.12);
+
+  --transition: all 0.35s ease;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ===========================
+   Base
+=========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e45b00;
+}
+
+/* ===========================
+   Selection
+=========================== */
+
+::selection {
+  background: var(--secondary);
+  color: white;
+}
+
+/* ===========================
+   Images
+=========================== */
+
+img {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ===========================
+   Utilities
+=========================== */
+
+.section-padding {
+  padding: 120px 0;
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-card-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.rounded-card {
+  border-radius: var(--radius-lg);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(
+    135deg,
+    #ffd54a 0%,
+    #ffc125 100%
+  );
+}
+
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    #ff6b00,
+    #ff8c1a
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ===========================
+   Animations
+=========================== */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotateSlow 20s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 107, 0, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(255, 107, 0, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 107, 0, 0);
+  }
+}
+
+.animate-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* ===========================
+   Decorative Blobs
+=========================== */
+
+.blob-yellow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(255, 213, 74, 0.2);
+  filter: blur(90px);
+}
+
+.blob-orange {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 107, 0, 0.18);
+  filter: blur(80px);
+}
+
+.swiper-slide {
+  height: auto;
+}
+
+.swiper-slide > div {
+  height: 100%;
 }
