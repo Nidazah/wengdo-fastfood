@@ -99,7 +99,7 @@ export default function CTA() {
                 className="relative z-20"
               >
                 <Image
-                  src="/images/cta/pizza-1.png"
+                  src="/images/cta/cta-pizza.png"
                   alt="Pizza"
                   width={500}
                   height={500}
