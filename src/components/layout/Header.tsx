@@ -110,7 +110,7 @@ export default function Header() {
 
             {/* Right Side */}
 
-            <div className="ml-auto hidden flex-shrink-0 items-center gap-3 pl-10 xl:gap-4 lg:flex">
+            <div className="ml-auto hidden flex-shrink-0 items-center gap-3 pl-6 xl:gap-4 xl:pl-8 lg:flex">
               <button
                 onClick={() => setSearchOpen(true)}
                 className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white shadow-lg transition hover:bg-[#FF6B00] hover:text-white"
@@ -152,7 +152,7 @@ export default function Header() {
                   <PhoneCall size={16} className="text-[#FF6B00]" />
                 </div>
 
-                <div>
+                <div className="hidden 2xl:block">
                   <p className="text-xs text-gray-500">Call Us</p>
 
                   <p className="text-base font-black whitespace-nowrap">
