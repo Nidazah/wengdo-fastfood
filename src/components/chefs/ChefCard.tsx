@@ -23,7 +23,7 @@ export default function ChefCard({
     <motion.div
       whileHover={{ y: -12 }}
       transition={{ duration: 0.3 }}
-      className="group overflow-hidden rounded-[32px] bg-white shadow-[0_20px_50px_rgba(0,0,0,.08)]"
+      className="group overflow-hidden rounded-2xl sm:rounded-[32px] bg-white shadow-[0_10px_30px_rgba(0,0,0,.08)] sm:shadow-[0_20px_50px_rgba(0,0,0,.08)]"
     >
       {/* Image */}
       <div className="relative overflow-hidden">
@@ -32,7 +32,7 @@ export default function ChefCard({
           alt={name}
           width={400}
           height={500}
-          className="h-[360px] w-full object-cover transition duration-500 group-hover:scale-110"
+          className="h-[220px] sm:h-[280px] md:h-[320px] lg:h-[360px] w-full object-cover transition duration-500 group-hover:scale-110"
         />
 
         {/* Overlay */}
@@ -43,7 +43,9 @@ export default function ChefCard({
             flex
             items-center
             justify-center
-            gap-4
+            gap-2
+            sm:gap-3
+            md:gap-4
             bg-[#FF6B00]/0
             transition-all
             duration-300
@@ -57,8 +59,12 @@ export default function ChefCard({
               href="#"
               className="
                 flex
-                h-12
-                w-12
+                h-9
+                w-9
+                sm:h-10
+                sm:w-10
+                md:h-12
+                md:w-12
                 translate-y-8
                 items-center
                 justify-center
@@ -72,19 +78,21 @@ export default function ChefCard({
                 group-hover:opacity-100
               "
             >
-              <Icon size={20} />
+              <Icon size={16} className="sm:hidden" />
+              <Icon size={18} className="hidden sm:block md:hidden" />
+              <Icon size={20} className="hidden md:block" />
             </motion.a>
           ))}
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-8 text-center">
-        <h3 className="text-2xl font-bold text-[#1F1F1F]">
+      <div className="p-4 sm:p-6 md:p-8 text-center">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#1F1F1F]">
           {name}
         </h3>
 
-        <p className="mt-2 font-semibold text-[#FF6B00]">
+        <p className="mt-1 sm:mt-2 text-sm sm:text-base font-semibold text-[#FF6B00]">
           {role}
         </p>
       </div>

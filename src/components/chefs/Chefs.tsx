@@ -10,14 +10,14 @@ import { chefs } from "./chefData";
 
 export default function Chefs() {
   return (
-    <section className="bg-white py-28">
+    <section className="bg-white py-16 sm:py-20 md:py-28">
       <Container>
         <SectionTitle
           subtitle="Our Chefs"
           title="Meet Our Professional Chefs"
         />
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 sm:mt-12 md:mt-16 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
           {chefs.map((chef, index) => (
             <motion.div
               key={chef.id}

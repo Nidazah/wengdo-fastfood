@@ -91,7 +91,13 @@ img {
 =========================== */
 
 .section-padding {
-  padding: 120px 0;
+  padding: 80px 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 120px 0;
+  }
 }
 
 .shadow-card {
@@ -192,6 +198,14 @@ img {
   filter: blur(90px);
 }
 
+@media (max-width: 768px) {
+  .blob-yellow {
+    width: 200px;
+    height: 200px;
+    filter: blur(60px);
+  }
+}
+
 .blob-orange {
   position: absolute;
   width: 300px;
@@ -199,6 +213,14 @@ img {
   border-radius: 50%;
   background: rgba(255, 107, 0, 0.18);
   filter: blur(80px);
+}
+
+@media (max-width: 768px) {
+  .blob-orange {
+    width: 160px;
+    height: 160px;
+    filter: blur(50px);
+  }
 }
 
 .swiper-slide {

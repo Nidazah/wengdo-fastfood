@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 import { products } from "@/data/products";
 
@@ -9,46 +9,71 @@ import Reviews from "@/components/product-details/Reviews";
 import RelatedProducts from "@/components/product-details/RelatedProducts";
 import PageTransition from "@/components/common/PageTransition";
 
-import type { Metadata } from "next";
+type ProductDetailsPageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
+}: ProductDetailsPageProps): Promise<Metadata> {
   const { id } = await params;
 
-  const product = products.find((item) => item.id === Number(id));
+  const product = products.find(
+    (item) => item.id === Number(id)
+  );
 
   if (!product) {
     return {
       title: "Product Not Found",
+      description: "The requested product could not be found.",
     };
   }
 
   return {
     title: product.name,
-
     description: product.description,
 
     openGraph: {
       title: product.name,
       description: product.description,
-      images: [product.image],
+
+      images: [
+        {
+          url: product.image,
+          alt: product.name,
+        },
+      ],
     },
   };
 }
 
 export default async function ProductDetailsPage({
   params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+}: ProductDetailsPageProps) {
   const { id } = await params;
 
-  const product = products.find((item) => item.id === Number(id));
+  const product = products.find(
+    (item) => item.id === Number(id)
+  );
 
-  if (!product) notFound();
+  // Stop rendering if product doesn't exist
+  if (!product) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center px-4">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold">
+            Product Not Found
+          </h1>
+
+          <p className="mt-3 text-gray-600">
+            Sorry, the product you are looking for does not exist.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <PageTransition>
@@ -60,7 +85,10 @@ export default async function ProductDetailsPage({
 
       <Reviews productId={product.id} />
 
-      <RelatedProducts currentId={product.id} category={product.category} />
+      <RelatedProducts
+        currentId={product.id}
+        category={product.category}
+      />
     </PageTransition>
   );
 }

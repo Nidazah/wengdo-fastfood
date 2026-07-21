@@ -12,15 +12,19 @@ export default function GalleryItem({ image }: Props) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="group relative overflow-hidden rounded-[30px]"
+      className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-[30px]"
     >
       <Image
         src={image}
         alt="Gallery"
         width={500}
         height={500}
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
         className="
-          h-[340px]
+          h-[150px]
+          sm:h-[240px]
+          md:h-[300px]
+          lg:h-[340px]
           w-full
           object-cover
           transition-all
@@ -46,8 +50,12 @@ export default function GalleryItem({ image }: Props) {
         <div
           className="
             flex
-            h-16
-            w-16
+            h-9
+            w-9
+            sm:h-12
+            sm:w-12
+            md:h-16
+            md:w-16
             scale-75
             items-center
             justify-center
@@ -60,7 +68,9 @@ export default function GalleryItem({ image }: Props) {
             group-hover:opacity-100
           "
         >
-          <Plus size={28} className="text-white" />
+          <Plus size={16} className="text-white sm:hidden" />
+          <Plus size={22} className="hidden text-white sm:block md:hidden" />
+          <Plus size={28} className="hidden text-white md:block" />
         </div>
       </div>
     </motion.div>

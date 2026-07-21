@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { blogPosts } from "@/data/blogData";
 
@@ -25,7 +24,9 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Blog",
+      title: "Blog | Wengdo",
+      description:
+        "Read the latest food news, recipes, tips, and stories from Wengdo.",
     };
   }
 
@@ -36,7 +37,12 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      images: [
+        {
+          url: post.image,
+          alt: post.title,
+        },
+      ],
     },
   };
 }
@@ -46,22 +52,16 @@ export default async function BlogDetailsPage({
 }: BlogDetailsPageProps) {
   const { id } = await params;
 
-  const post = blogPosts.find(
-    (item) => item.id === Number(id)
-  );
-
-  if (!post) {
-    notFound();
-  }
-
   return (
     <PageTransition>
+      {/* Blog Hero */}
       <BlogHero />
 
-      <section className="bg-[#FFF8EE] py-24">
+      {/* Blog Details */}
+      <section className="bg-[#FFF8EE] py-16 sm:py-20 lg:py-24">
         <Container>
           <div className="mx-auto w-full max-w-[900px]">
-            <BlogDetails id={post.id} />
+            <BlogDetails id={Number(id)} />
           </div>
         </Container>
       </section>

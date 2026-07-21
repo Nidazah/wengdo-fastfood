@@ -33,11 +33,16 @@ export default function CounterCard({
       }}
       className="
         group
-        rounded-[30px]
+        rounded-2xl
+        sm:rounded-[24px]
+        md:rounded-[30px]
         bg-white
-        p-10
+        p-4
+        sm:p-7
+        md:p-10
         text-center
-        shadow-[0_20px_45px_rgba(0,0,0,.08)]
+        shadow-[0_8px_20px_rgba(0,0,0,.08)]
+        sm:shadow-[0_20px_45px_rgba(0,0,0,.08)]
         transition-all
       "
     >
@@ -45,8 +50,12 @@ export default function CounterCard({
         className="
           mx-auto
           flex
-          h-20
-          w-20
+          h-12
+          w-12
+          sm:h-16
+          sm:w-16
+          md:h-20
+          md:w-20
           items-center
           justify-center
           rounded-full
@@ -56,12 +65,20 @@ export default function CounterCard({
         "
       >
         <Icon
+          size={22}
+          className="text-[#FF6B00] transition group-hover:text-white sm:hidden"
+        />
+        <Icon
+          size={28}
+          className="hidden text-[#FF6B00] transition group-hover:text-white sm:block md:hidden"
+        />
+        <Icon
           size={36}
-          className="text-[#FF6B00] transition group-hover:text-white"
+          className="hidden text-[#FF6B00] transition group-hover:text-white md:block"
         />
       </div>
 
-      <h2 className="mt-8 text-5xl font-black text-[#1F1F1F]">
+      <h2 className="mt-4 sm:mt-6 md:mt-8 text-2xl sm:text-3xl md:text-5xl font-black text-[#1F1F1F]">
         <CountUp
           end={number}
           duration={2}
@@ -69,7 +86,7 @@ export default function CounterCard({
         {suffix}
       </h2>
 
-      <p className="mt-4 text-lg font-semibold text-[#6B7280]">
+      <p className="mt-1.5 sm:mt-3 md:mt-4 text-xs sm:text-base md:text-lg font-semibold text-[#6B7280]">
         {title}
       </p>
     </motion.div>

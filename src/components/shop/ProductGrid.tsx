@@ -37,7 +37,7 @@ export default function ProductGrid() {
   }, [search, category]);
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-12 sm:py-16 md:py-20">
       <Container>
         {/* Search */}
 
@@ -72,7 +72,7 @@ export default function ProductGrid() {
         {/* Products */}
 
         {filteredProducts.length > 0 ? (
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 xl:grid-cols-3">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}

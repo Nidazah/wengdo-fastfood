@@ -6,9 +6,9 @@ import { menuItems } from "@/data/menuData";
 
 export default function MenuGrid() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-10 sm:py-14 md:py-20">
       <Container>
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 md:gap-8 md:grid-cols-2 xl:grid-cols-3">
           {menuItems.map((item) => (
             <MenuCard key={item.id} {...item} />
           ))}

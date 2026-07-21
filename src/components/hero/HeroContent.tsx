@@ -17,9 +17,9 @@ export default function HeroContent() {
         transition={{ duration: 0.5 }}
         className="flex items-center gap-3"
       >
-        <span className="h-3 w-3 rounded-full bg-[#FF6B00]" />
+        <span className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-[#FF6B00]" />
 
-        <span className="text-sm font-bold uppercase tracking-[4px] text-[#FF6B00]">
+        <span className="text-[10px] sm:text-sm font-bold uppercase tracking-[3px] sm:tracking-[4px] text-[#FF6B00]">
           Welcome To Wengdo
         </span>
       </motion.div>
@@ -33,7 +33,7 @@ export default function HeroContent() {
           delay: 0.2,
           duration: 0.7,
         }}
-        className="mt-8 text-[56px] font-black leading-[1.05] text-[#1F1F1F] lg:text-[82px]"
+        className="mt-6 sm:mt-8 text-[36px] sm:text-[44px] md:text-[56px] font-black leading-[1.05] text-[#1F1F1F] lg:text-[82px]"
       >
         The Best
         <br />
@@ -56,7 +56,7 @@ export default function HeroContent() {
           delay: 0.4,
           duration: 0.7,
         }}
-        className="mt-8 max-w-lg text-lg leading-9 text-gray-600"
+        className="mt-5 sm:mt-6 md:mt-8 max-w-lg text-base sm:text-lg leading-7 sm:leading-9 text-gray-600"
       >
         Freshly prepared burgers, pizzas, crispy fries and sandwiches
         made with premium ingredients. Every meal is cooked fresh and
@@ -72,7 +72,7 @@ export default function HeroContent() {
           delay: 0.6,
           duration: 0.7,
         }}
-        className="mt-10 flex flex-wrap items-center gap-5"
+        className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap items-center gap-4 sm:gap-5"
       >
         <Link href="/shop">
           <Button className="cursor-pointer px-10">
@@ -110,7 +110,7 @@ export default function HeroContent() {
         transition={{
           delay: 0.9,
         }}
-        className="mt-16 flex flex-wrap gap-8"
+        className="mt-10 sm:mt-12 md:mt-16 flex flex-wrap gap-4 sm:gap-6 md:gap-8"
       >
         {[
           "Fresh Ingredients",
@@ -141,34 +141,34 @@ export default function HeroContent() {
         transition={{
           delay: 1.1,
         }}
-        className="mt-16 grid grid-cols-3 gap-8"
+        className="mt-10 sm:mt-12 md:mt-16 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8"
       >
         <div>
-          <h3 className="text-4xl font-black text-[#FF6B00]">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#FF6B00]">
             25K+
           </h3>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
             Happy Customers
           </p>
         </div>
 
         <div>
-          <h3 className="text-4xl font-black text-[#FF6B00]">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#FF6B00]">
             50+
           </h3>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
             Food Items
           </p>
         </div>
 
         <div>
-          <h3 className="text-4xl font-black text-[#FF6B00]">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#FF6B00]">
             15+
           </h3>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500">
             Years Experience
           </p>
         </div>

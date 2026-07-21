@@ -26,14 +26,21 @@ export default function Button({ children, className = "", ...props }: ButtonPro
         justify-center
         rounded-full
         bg-[#FF6B00]
-        px-9
-        py-4
-        text-[15px]
+        px-5
+        py-2.5
+        text-xs
+        sm:px-7
+        sm:py-3
+        sm:text-sm
+        md:px-9
+        md:py-4
+        md:text-[15px]
         font-bold
         uppercase
         tracking-wide
         text-black
-        shadow-[0_18px_45px_rgba(255,107,0,.35)]
+        shadow-[0_8px_20px_rgba(255,107,0,.3)]
+        sm:shadow-[0_18px_45px_rgba(255,107,0,.35)]
         transition-all
         duration-300
         hover:bg-[#ff7a1a]

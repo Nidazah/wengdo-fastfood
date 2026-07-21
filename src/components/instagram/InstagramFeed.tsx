@@ -10,7 +10,7 @@ import instagramImages from "./instagramData";
 
 export default function InstagramFeed() {
   return (
-    <section className="bg-[#FFF8EE] py-28">
+    <section className="bg-[#FFF8EE] py-16 sm:py-20 md:py-28">
       <Container>
         <SectionTitle
           subtitle="Instagram"

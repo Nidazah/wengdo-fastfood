@@ -30,11 +30,16 @@ export default function FeatureCard({
       }}
       className="
         group
-        rounded-[30px]
+        rounded-2xl
+        sm:rounded-[24px]
+        md:rounded-[30px]
         bg-white
-        p-8
+        p-4
+        sm:p-6
+        md:p-8
         text-center
-        shadow-[0_20px_50px_rgba(0,0,0,.08)]
+        shadow-[0_8px_20px_rgba(0,0,0,.08)]
+        sm:shadow-[0_20px_50px_rgba(0,0,0,.08)]
         transition-all
       "
     >
@@ -43,8 +48,12 @@ export default function FeatureCard({
         className="
           mx-auto
           flex
-          h-20
-          w-20
+          h-12
+          w-12
+          sm:h-16
+          sm:w-16
+          md:h-20
+          md:w-20
           items-center
           justify-center
           rounded-full
@@ -54,16 +63,24 @@ export default function FeatureCard({
         "
       >
         <Icon
+          size={22}
+          className="text-[#FF6B00] transition group-hover:text-white sm:hidden"
+        />
+        <Icon
+          size={30}
+          className="hidden text-[#FF6B00] transition group-hover:text-white sm:block md:hidden"
+        />
+        <Icon
           size={38}
-          className="text-[#FF6B00] transition group-hover:text-white"
+          className="hidden text-[#FF6B00] transition group-hover:text-white md:block"
         />
       </div>
 
-      <h3 className="mt-8 text-2xl font-bold text-[#1F1F1F]">
+      <h3 className="mt-4 sm:mt-6 md:mt-8 text-sm sm:text-xl md:text-2xl font-bold text-[#1F1F1F]">
         {title}
       </h3>
 
-      <p className="mt-4 leading-8 text-[#6B7280]">
+      <p className="mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm md:text-base leading-relaxed sm:leading-7 md:leading-8 text-[#6B7280]">
         {description}
       </p>
     </motion.div>

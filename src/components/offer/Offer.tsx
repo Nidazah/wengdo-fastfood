@@ -9,9 +9,9 @@ import Button from "@/components/common/Button";
 
 export default function Offer() {
   return (
-    <section className="py-24 bg-[#FFF8EE]">
+    <section className="py-16 sm:py-20 md:py-24 bg-[#FFF8EE]">
       <Container>
-        <div className="relative overflow-hidden rounded-[50px] bg-[#FFD54A] px-8 py-16 lg:px-20 lg:py-20">
+        <div className="relative overflow-hidden rounded-[24px] sm:rounded-[40px] lg:rounded-[50px] bg-[#FFD54A] px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 lg:px-20 lg:py-20">
 
           {/* Background Decorations */}
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10" />
@@ -36,7 +36,7 @@ export default function Offer() {
                 Special Offer
               </span>
 
-              <h2 className="mt-6 text-4xl font-black leading-tight text-[#1F1F1F] md:text-5xl lg:text-6xl">
+              <h2 className="mt-4 sm:mt-5 md:mt-6 text-2xl sm:text-3xl md:text-4xl font-black leading-tight text-[#1F1F1F] md:text-5xl lg:text-6xl">
                 Delicious Combo
                 <br />
                 Only{" "}
@@ -45,12 +45,12 @@ export default function Offer() {
                 </span>
               </h2>
 
-              <p className="mt-6 max-w-lg text-lg leading-8 text-[#5B5B5B]">
+              <p className="mt-4 sm:mt-5 md:mt-6 max-w-lg text-sm sm:text-base md:text-lg leading-6 sm:leading-7 md:leading-8 text-[#5B5B5B]">
                 Enjoy our premium burger combo with crispy fries and a
                 refreshing cold drink. Freshly prepared every day.
               </p>
 
-              <div className="mt-10">
+              <div className="mt-6 sm:mt-8 md:mt-10">
                 <Button className="cursor-pointer">
                   <span className="flex items-center gap-2">
                     Order Now
@@ -69,10 +69,10 @@ export default function Offer() {
               className="relative flex justify-center"
             >
               {/* White Circle */}
-              <div className="absolute h-[420px] w-[420px] rounded-full bg-white/25" />
+              <div className="absolute h-[250px] w-[250px] sm:h-[320px] sm:w-[320px] md:h-[420px] md:w-[420px] rounded-full bg-white/25" />
 
               {/* Dashed Circle */}
-              <div className="absolute h-[500px] w-[500px] rounded-full border-2 border-dashed border-white/40" />
+              <div className="absolute h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] md:h-[500px] md:w-[500px] rounded-full border-2 border-dashed border-white/40" />
 
               {/* Burger */}
               <motion.div
@@ -85,13 +85,15 @@ export default function Offer() {
                 }}
                 className="relative z-20"
               >
-                <Image
-                  src="/images/offer/offer-burger.png"
-                  alt="Offer Burger"
-                  width={520}
-                  height={520}
-                  className="drop-shadow-[0_40px_70px_rgba(0,0,0,.18)]"
-                />
+                <div className="w-[220px] sm:w-[320px] md:w-[420px] lg:w-[520px]">
+                  <Image
+                    src="/images/offer/offer-burger.png"
+                    alt="Offer Burger"
+                    width={520}
+                    height={520}
+                    className="drop-shadow-[0_40px_70px_rgba(0,0,0,.18)] w-full h-auto"
+                  />
+                </div>
               </motion.div>
             </motion.div>
 

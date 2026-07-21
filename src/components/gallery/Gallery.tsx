@@ -10,14 +10,14 @@ import { gallery } from "./galleryData";
 
 export default function Gallery() {
   return (
-    <section className="bg-[#FFF8EE] py-28">
+    <section className="bg-[#FFF8EE] py-16 sm:py-20 md:py-28">
       <Container>
         <SectionTitle
           subtitle="Our Gallery"
           title="Delicious Food Gallery"
         />
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 sm:mt-14 md:mt-16 grid grid-cols-2 gap-3 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((image, index) => (
             <motion.div
               key={image}

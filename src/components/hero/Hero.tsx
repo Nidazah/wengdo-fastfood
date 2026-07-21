@@ -11,7 +11,7 @@ import HeroImages from "./HeroImages";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[#FFF8EE] via-[#FFF4D6] to-[#FFE79C] pt-40 pb-24 lg:min-h-screen lg:pt-32">
+    <section className="relative overflow-hidden bg-linear-to-br from-[#FFF8EE] via-[#FFF4D6] to-[#FFE79C] pt-28 sm:pt-32 md:pt-40 pb-16 sm:pb-20 lg:min-h-screen lg:pt-32">
       {/* Background Decorations */}
       <HeroBackground />
 
@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="absolute -right-20 -bottom-24 h-80 w-80 rounded-full bg-[#FF6B00]/10 blur-[120px]" />
 
       <Container className="relative z-20">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-8 sm:gap-12 md:gap-16 lg:grid-cols-2">
           {/* Left Side */}
           <motion.div
             variants={fadeLeft}
@@ -36,7 +36,7 @@ export default function Hero() {
             variants={fadeRight}
             initial="hidden"
             animate="show"
-            className="relative mt-20 lg:mt-0"
+            className="relative mt-4 sm:mt-8 md:mt-12 lg:mt-0"
           >
             <HeroImages />
           </motion.div>

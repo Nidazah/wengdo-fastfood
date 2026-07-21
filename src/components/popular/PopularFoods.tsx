@@ -19,7 +19,7 @@ export default function PopularFoods() {
   }, [active]);
 
   return (
-    <section className="bg-[#FFF8EE] py-28">
+    <section className="bg-[#FFF8EE] py-16 sm:py-20 md:py-28">
       <Container>
         <SectionTitle
           subtitle="Popular Foods"
@@ -32,7 +32,7 @@ export default function PopularFoods() {
           categories={categories}
         />
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 sm:mt-14 md:mt-16 grid grid-cols-2 gap-3 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filteredFoods.map((food) => (
               <FoodCard

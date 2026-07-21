@@ -35,7 +35,7 @@ const blogs = [
 
 export default function Blog() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-16 sm:py-20 md:py-24">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 40 }}

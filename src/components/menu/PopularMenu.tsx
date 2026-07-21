@@ -27,7 +27,7 @@ export default function PopularMenu() {
   }, [active]);
 
   return (
-    <section className="bg-[#FFF8EE] py-24">
+    <section className="bg-[#FFF8EE] py-16 sm:py-20 md:py-24">
       <Container>
         <SectionTitle
           subtitle="Popular Food"
@@ -36,12 +36,12 @@ export default function PopularMenu() {
 
         {/* Category Buttons */}
 
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <div className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActive(category)}
-              className={`cursor-pointer rounded-full px-8 py-3 font-bold transition-all duration-300 ${
+              className={`cursor-pointer rounded-full px-3.5 py-1.5 text-xs sm:px-6 sm:py-2.5 sm:text-base md:px-8 md:py-3 font-bold transition-all duration-300 ${
                 active === category
                   ? "bg-[#FF6B00] text-white shadow-lg"
                   : "bg-white text-[#1F1F1F] hover:bg-[#FFD54A]"
@@ -72,7 +72,7 @@ export default function PopularMenu() {
             transition={{
               duration: 0.4,
             }}
-            className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4"
+            className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5 md:gap-8"
           >
             {filteredProducts.map((product) => (
               <MenuCard
@@ -91,12 +91,12 @@ export default function PopularMenu() {
         {/* Empty State */}
 
         {filteredProducts.length === 0 && (
-          <div className="mt-16 text-center">
-            <h3 className="text-3xl font-black">
+          <div className="mt-10 sm:mt-14 md:mt-16 text-center px-4">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black">
               No Items Found
             </h3>
 
-            <p className="mt-3 text-gray-500">
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base text-gray-500">
               This category will be available soon.
             </p>
           </div>

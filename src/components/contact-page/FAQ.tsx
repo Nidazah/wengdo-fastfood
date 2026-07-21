@@ -22,24 +22,24 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-12 sm:py-16 md:py-24">
       <Container>
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-12 text-center text-4xl font-black">
+          <h2 className="mb-6 sm:mb-9 md:mb-12 text-center text-xl sm:text-2xl md:text-4xl font-black">
             Frequently Asked Questions
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-3 sm:space-y-5 md:space-y-6">
             {faqs.map((faq) => (
               <div
                 key={faq.question}
-                className="rounded-[25px] bg-[#FFF8EE] p-8"
+                className="rounded-xl sm:rounded-[20px] md:rounded-[25px] bg-[#FFF8EE] p-4 sm:p-6 md:p-8"
               >
-                <h3 className="text-xl font-bold">
+                <h3 className="text-sm sm:text-lg md:text-xl font-bold">
                   {faq.question}
                 </h3>
 
-                <p className="mt-4 leading-8 text-gray-600">
+                <p className="mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm md:text-base leading-relaxed sm:leading-8 text-gray-600">
                   {faq.answer}
                 </p>
               </div>

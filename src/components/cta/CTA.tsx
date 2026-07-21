@@ -9,9 +9,9 @@ import Button from "@/components/common/Button";
 
 export default function CTA() {
   return (
-    <section className="bg-[#FFF8EE] py-28">
+    <section className="bg-[#FFF8EE] py-16 sm:py-20 md:py-28">
       <Container>
-        <div className="relative overflow-hidden rounded-[45px] bg-[#FFD54A] px-8 py-16 lg:px-20 lg:py-20">
+        <div className="relative overflow-hidden rounded-[24px] sm:rounded-[40px] lg:rounded-[45px] bg-[#FFD54A] px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 lg:px-20 lg:py-20">
           {/* Decorative Circles */}
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/10" />
 
@@ -34,18 +34,18 @@ export default function CTA() {
                 Call & Order
               </span>
 
-              <h2 className="mt-6 text-4xl font-black leading-tight text-[#1F1F1F] md:text-5xl lg:text-6xl">
+              <h2 className="mt-4 sm:mt-5 md:mt-6 text-2xl sm:text-3xl md:text-4xl font-black leading-tight text-[#1F1F1F] md:text-5xl lg:text-6xl">
                 Ready To Enjoy
                 <br />
                 Delicious Food?
               </h2>
 
-              <p className="mt-6 max-w-lg text-lg leading-8 text-[#444]">
+              <p className="mt-4 sm:mt-5 md:mt-6 max-w-lg text-sm sm:text-base md:text-lg leading-6 sm:leading-7 md:leading-8 text-[#444]">
                 Fresh burgers, pizzas, sandwiches and drinks prepared using
                 premium ingredients and delivered hot to your doorstep.
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-8">
+              <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap items-center gap-5 sm:gap-6 md:gap-8">
                 <Button>
                   <span className="cursor-pointer flex items-center gap-2">
                     Order Now
@@ -77,13 +77,13 @@ export default function CTA() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative flex h-[550px] items-center justify-center"
+              className="relative flex h-[280px] sm:h-[380px] md:h-[450px] lg:h-[550px] items-center justify-center"
             >
               {/* White Circle */}
-              <div className="absolute h-[420px] w-[420px] rounded-full bg-white/20" />
+              <div className="absolute h-[250px] w-[250px] sm:h-[320px] sm:w-[320px] md:h-[420px] md:w-[420px] rounded-full bg-white/20" />
 
               {/* Dashed Ring */}
-              <div className="absolute h-[500px] w-[500px] rounded-full border-2 border-dashed border-white/40" />
+              <div className="absolute h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] md:h-[500px] md:w-[500px] rounded-full border-2 border-dashed border-white/40" />
 
               {/* Pizza */}
               <motion.div
@@ -96,7 +96,7 @@ export default function CTA() {
                   duration: 5,
                   ease: "easeInOut",
                 }}
-                className="relative z-20"
+                className="relative z-20 w-[220px] sm:w-[320px] md:w-[420px] lg:w-[500px]"
               >
                 <Image
                   src="/images/cta/cta-pizza.png"
@@ -104,7 +104,7 @@ export default function CTA() {
                   width={500}
                   height={500}
                   priority
-                  className="drop-shadow-[0_40px_80px_rgba(0,0,0,.25)]"
+                  className="drop-shadow-[0_40px_80px_rgba(0,0,0,.25)] w-full h-auto"
                 />
               </motion.div>
             </motion.div>

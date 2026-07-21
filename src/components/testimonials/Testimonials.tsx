@@ -14,7 +14,7 @@ import { testimonials } from "./testimonialData";
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-28">
+    <section className="bg-white py-16 sm:py-20 md:py-28">
       <Container>
         <SectionTitle
           subtitle="Testimonials"
@@ -32,6 +32,12 @@ export default function Testimonials() {
           }}
           pagination={{ clickable: true }}
           breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 1.2,
+            },
             768: {
               slidesPerView: 2,
             },
