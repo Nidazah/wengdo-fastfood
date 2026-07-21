@@ -55,7 +55,7 @@ export const menuItems: MenuItem[] = [
   {
     id: 5,
     name: "Double Cheese Burger",
-    image: "/images/menu/burger-1.png",
+    image: "/images/menu/Cheese-Burger-Photoroom.png",
     category: "Burger",
     price: 15,
     rating: 5,
