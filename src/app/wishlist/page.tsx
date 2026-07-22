@@ -6,7 +6,6 @@ import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 
 import Container from "@/components/common/Container";
 import PageBanner from "@/components/common/PageBanner";
-import PageTransition from "@/components/common/PageTransition";
 
 import { useWishlist } from "@/context/WishlistContext";
 import { useCart } from "@/context/CartContext";
@@ -16,7 +15,7 @@ export default function WishlistPage() {
   const { addToCart } = useCart();
 
   return (
-    <PageTransition>
+    <main>
       <section className="bg-[#FFF8EE] py-28">
         <Container>
           <div className="text-center">
@@ -104,6 +103,6 @@ export default function WishlistPage() {
           )}
         </Container>
       </section>
-    </PageTransition>
+    </main>
   );
 }

@@ -3,6 +3,7 @@ export const fadeUp = {
     opacity: 0,
     y: 40,
   },
+
   show: {
     opacity: 1,
     y: 0,
@@ -17,6 +18,7 @@ export const fadeLeft = {
     opacity: 0,
     x: -50,
   },
+
   show: {
     opacity: 1,
     x: 0,
@@ -31,6 +33,7 @@ export const fadeRight = {
     opacity: 0,
     x: 50,
   },
+
   show: {
     opacity: 1,
     x: 0,
@@ -45,6 +48,7 @@ export const zoomIn = {
     opacity: 0,
     scale: 0.9,
   },
+
   show: {
     opacity: 1,
     scale: 1,
@@ -56,6 +60,7 @@ export const zoomIn = {
 
 export const staggerContainer = {
   hidden: {},
+
   show: {
     transition: {
       staggerChildren: 0.15,

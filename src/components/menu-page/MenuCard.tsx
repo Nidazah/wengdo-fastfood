@@ -1,86 +1,349 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ShoppingCart, Star } from "lucide-react";
+import Link from "next/link";
+import {
+  Heart,
+  ShoppingCart,
+  Star,
+} from "lucide-react";
 
-interface Props {
-  name: string;
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
+import type { Product } from "@/data/products";
+
+interface MenuCardProps {
+  id: number;
   image: string;
-  category: string;
+  name: string;
   price: number;
   rating: number;
-  description: string;
+  badge?: string;
+  sale?: boolean;
+  product?: Product;
 }
 
 export default function MenuCard({
-  name,
+  id,
   image,
-  category,
+  name,
   price,
   rating,
-  description,
-}: Props) {
+  badge,
+  sale = false,
+  product: productProp,
+}: MenuCardProps) {
+  const { addToCart } = useCart();
+  const { toggleWishlist, isWishlisted } = useWishlist();
+
+  // Use the real Product object when provided.
+  // Otherwise create a fallback product for simple menu items.
+  const product: Product =
+    productProp ?? {
+      id,
+      name,
+      image,
+      price,
+      sale,
+      rating,
+      description: `${name} is prepared fresh for every order.`,
+      details: "Freshly prepared and served with care.",
+      weight: "320g",
+      category: "Fast Food",
+      ingredients: [
+        "Fresh ingredients",
+        "Signature recipe",
+      ],
+      delivery: "30–40 Minutes",
+    };
+
+  const wishlisted = isWishlisted(product.id);
+
   return (
-    <motion.div
-      whileHover={{ y: -10 }}
-      transition={{ duration: 0.3 }}
-      className="group overflow-hidden rounded-2xl sm:rounded-[24px] md:rounded-[30px] bg-white shadow-[0_8px_20px_rgba(0,0,0,.08)] sm:shadow-[0_20px_45px_rgba(0,0,0,.08)]"
+    <div
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-2xl
+        bg-white
+        px-3
+        pb-4
+        pt-6
+        shadow-[0_8px_20px_rgba(0,0,0,.08)]
+        transition-transform
+        duration-300
+        hover:-translate-y-1
+        sm:rounded-[28px]
+        sm:px-5
+        sm:pb-5
+        sm:pt-7
+        sm:shadow-[0_18px_45px_rgba(0,0,0,.08)]
+        md:rounded-[32px]
+        md:px-8
+        md:pb-6
+        md:pt-7
+      "
     >
-      <div className="relative bg-[#FFF8EE] p-3 sm:p-6 md:p-8">
-        <span className="absolute left-2.5 top-2.5 sm:left-5 sm:top-5 md:left-6 md:top-6 rounded-full bg-[#FF6B00] px-2 py-0.5 sm:px-3 sm:py-1 text-[9px] sm:text-xs md:text-sm font-semibold text-white">
-          {category}
+      {/* Background Circle */}
+      <div
+        className="
+          absolute
+          -right-10
+          -top-10
+          h-24
+          w-24
+          rounded-full
+          bg-[#FFF5D6]
+          sm:-right-16
+          sm:-top-16
+          sm:h-40
+          sm:w-40
+        "
+      />
+
+      {/* Decoration */}
+      <div
+        className="
+          absolute
+          left-4
+          top-4
+          h-2
+          w-5
+          rounded-full
+          bg-[#FF6B00]
+          sm:left-8
+          sm:top-8
+          sm:h-2.5
+          sm:w-8
+        "
+      />
+
+      {/* Badge */}
+      {badge && (
+        <span
+          className="
+            absolute
+            left-4
+            top-8
+            rounded-full
+            bg-[#FF6B00]
+            px-2
+            py-0.5
+            text-[8px]
+            font-bold
+            uppercase
+            tracking-wide
+            text-white
+            sm:left-8
+            sm:top-14
+            sm:px-3
+            sm:py-1
+            sm:text-[10px]
+          "
+        >
+          {badge}
         </span>
+      )}
 
-        <Image
-          src={image}
-          alt={name}
-          width={260}
-          height={260}
-          sizes="(max-width: 640px) 100px, (max-width: 768px) 170px, 208px"
-          className="mx-auto h-[100px] w-[100px] sm:h-[170px] sm:w-[170px] md:h-52 md:w-52 object-contain transition duration-500 group-hover:scale-110"
+      {/* Wishlist */}
+      <button
+        type="button"
+        onClick={() => toggleWishlist(product)}
+        aria-label={
+          wishlisted
+            ? `Remove ${product.name} from wishlist`
+            : `Add ${product.name} to wishlist`
+        }
+        className="
+          absolute
+          right-3
+          top-3
+          flex
+          h-7
+          w-7
+          cursor-pointer
+          items-center
+          justify-center
+          rounded-full
+          bg-[#FFF5D6]
+          transition
+          hover:bg-[#FF6B00]
+          hover:text-white
+          sm:right-6
+          sm:top-6
+          sm:h-10
+          sm:w-10
+        "
+      >
+        <Heart
+          size={18}
+          fill={wishlisted ? "#FF6B00" : "transparent"}
+          className={
+            wishlisted
+              ? "text-[#FF6B00]"
+              : "text-[#1F1F1F]"
+          }
         />
-      </div>
+      </button>
 
-      <div className="p-3 sm:p-6 md:p-8">
-        <div className="mb-2 sm:mb-3 md:mb-4 flex gap-0.5">
-          {Array.from({ length: rating }).map((_, index) => (
-            <Star
-              key={index}
-              size={12}
-              fill="#FFD54A"
-              className="text-[#FFD54A] sm:hidden"
+      {/* Food Image */}
+      <Link href={`/shop/${product.id}`}>
+        <div
+          className="
+            mt-6
+            flex
+            cursor-pointer
+            justify-center
+            sm:mt-8
+            md:mt-10
+          "
+        >
+          <div
+            className="
+              transition-transform
+              duration-300
+              group-hover:scale-[1.04]
+              group-hover:-rotate-2
+            "
+          >
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={180}
+              height={180}
+              sizes="
+                (max-width: 640px) 90px,
+                (max-width: 768px) 130px,
+                180px
+              "
+              className="
+                h-[90px]
+                w-[90px]
+                object-contain
+                drop-shadow-[0_12px_18px_rgba(0,0,0,.15)]
+                sm:h-[130px]
+                sm:w-[130px]
+                sm:drop-shadow-[0_25px_35px_rgba(0,0,0,.18)]
+                md:h-[180px]
+                md:w-[180px]
+              "
             />
-          ))}
-          {Array.from({ length: rating }).map((_, index) => (
+          </div>
+        </div>
+      </Link>
+
+      {/* Rating */}
+      <div
+        className="
+          mt-2.5
+          flex
+          justify-center
+          gap-0.5
+          sm:mt-4
+          sm:gap-1
+          md:mt-5
+        "
+        aria-label={`${product.rating} out of 5 stars`}
+      >
+        {Array.from({ length: product.rating }).map(
+          (_, index) => (
             <Star
               key={index}
               size={16}
               fill="#FFD54A"
-              className="hidden text-[#FFD54A] sm:block"
+              className="text-[#FFD54A]"
             />
-          ))}
-        </div>
-
-        <h3 className="text-sm sm:text-xl md:text-2xl font-extrabold text-[#1F1F1F] truncate">
-          {name}
-        </h3>
-
-        <p className="mt-1.5 sm:mt-2.5 md:mt-3 line-clamp-2 text-xs sm:text-sm md:text-base leading-relaxed sm:leading-7 text-[#6B7280]">
-          {description}
-        </p>
-
-        <div className="mt-3 sm:mt-6 md:mt-8 flex items-center justify-between">
-          <span className="text-lg sm:text-2xl md:text-3xl font-black text-[#FF6B00]">
-            ${price}
-          </span>
-
-          <button className="cursor-pointer flex h-9 w-9 sm:h-10 sm:w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-[#FFD54A] text-[#1F1F1F] transition hover:bg-[#FF6B00] hover:text-white">
-            <ShoppingCart size={16} className="sm:hidden" />
-            <ShoppingCart size={20} className="hidden sm:block" />
-          </button>
-        </div>
+          )
+        )}
       </div>
-    </motion.div>
+
+      {/* Name */}
+      <Link href={`/shop/${product.id}`}>
+        <h3
+          className="
+            mt-1.5
+            truncate
+            px-1
+            text-center
+            text-sm
+            font-extrabold
+            text-[#1F1F1F]
+            transition
+            hover:text-[#FF6B00]
+            sm:mt-2.5
+            sm:text-lg
+            md:mt-3
+            md:text-[24px]
+          "
+        >
+          {product.name}
+        </h3>
+      </Link>
+
+      {/* Bottom */}
+      <div
+        className="
+          mt-3
+          flex
+          items-center
+          justify-between
+          border-t
+          border-[#F2F2F2]
+          pt-3
+          sm:mt-6
+          sm:pt-4
+          md:mt-8
+          md:pt-5
+        "
+      >
+        <span
+          className="
+            text-lg
+            font-black
+            text-[#FF6B00]
+            sm:text-2xl
+            md:text-[34px]
+          "
+        >
+          ${product.price.toFixed(2)}
+        </span>
+
+        <button
+          type="button"
+          onClick={() => addToCart(product)}
+          aria-label={`Add ${product.name} to cart`}
+          className="
+            flex
+            h-9
+            w-9
+            cursor-pointer
+            items-center
+            justify-center
+            rounded-full
+            bg-[#FFD54A]
+            text-[#1F1F1F]
+            transition-all
+            duration-300
+            hover:rotate-12
+            hover:bg-[#FF6B00]
+            hover:text-white
+            sm:h-12
+            sm:w-12
+            md:h-14
+            md:w-14
+          "
+        >
+          <ShoppingCart
+            size={16}
+            className="sm:hidden"
+          />
+          <ShoppingCart
+            size={22}
+            className="hidden sm:block"
+          />
+        </button>
+      </div>
+    </div>
   );
 }

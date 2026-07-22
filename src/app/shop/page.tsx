@@ -1,6 +1,5 @@
 import ShopHero from "@/components/shop/ShopHero";
 import ProductGrid from "@/components/shop/ProductGrid";
-import PageTransition from "@/components/common/PageTransition";
 
 export const metadata = {
   title: "Order Online | Wengdo Fast Food",
@@ -10,9 +9,9 @@ export const metadata = {
 
 export default function ShopPage() {
   return (
-    <PageTransition>
+    <main>
       <ShopHero />
       <ProductGrid />
-    </PageTransition>
+    </main>
   );
 }

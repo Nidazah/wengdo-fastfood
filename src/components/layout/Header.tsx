@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -28,9 +28,38 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
+// Memoized navigation component to prevent re-renders
+const NavLinks = ({ pathname, onMobileClose }: { 
+  pathname: string; 
+  onMobileClose?: () => void;
+}) => {
+  return (
+    <>
+      {navLinks.map((item) => {
+        const active =
+          item.href === "/"
+            ? pathname === "/"
+            : pathname.startsWith(item.href);
+
+        return (
+          <Link
+            key={item.name}
+            href={item.href}
+            onClick={onMobileClose}
+            className={`block cursor-pointer text-base font-semibold sm:text-lg ${
+              active ? "text-[#FF6B00]" : "text-[#1F1F1F]"
+            }`}
+          >
+            {item.name}
+          </Link>
+        );
+      })}
+    </>
+  );
+};
+
 export default function Header() {
   const pathname = usePathname() ?? "";
-
   const { cart } = useCart();
   const { wishlist } = useWishlist();
 
@@ -40,24 +69,65 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
 
+  // Mount effect
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Optimized scroll handler with requestAnimationFrame
   useEffect(() => {
+    let ticking = false;
+
     const onScroll = () => {
-      setScrolled(window.scrollY > 30);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 30);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
-  const totalItems = cart.reduce(
-    (sum, item) => sum + item.quantity,
-    0
+  // Memoize total items to prevent recalculation on every render
+  const totalItems = useMemo(
+    () => cart.reduce((sum, item) => sum + item.quantity, 0),
+    [cart]
   );
+
+  // Memoize handlers to prevent recreation
+  const handleOpenSearch = useCallback(() => setSearchOpen(true), []);
+  const handleOpenCart = useCallback(() => setCartOpen(true), []);
+  const handleCloseCart = useCallback(() => setCartOpen(false), []);
+  const handleCloseSearch = useCallback(() => setSearchOpen(false), []);
+  const handleOpenMobile = useCallback(() => setMobileOpen(true), []);
+  const handleCloseMobile = useCallback(() => setMobileOpen(false), []);
+
+  // Memoize cart count display
+  const cartCount = useMemo(() => {
+    if (!mounted || totalItems === 0) return null;
+    return (
+      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
+        {totalItems}
+      </span>
+    );
+  }, [mounted, totalItems]);
+
+  // Memoize wishlist count display
+  const wishlistCount = useMemo(() => {
+    if (!mounted || wishlist.length === 0) return null;
+    return (
+      <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
+        {wishlist.length}
+      </span>
+    );
+  }, [mounted, wishlist.length]);
 
   return (
     <>
@@ -74,10 +144,11 @@ export default function Header() {
       >
         <Container>
           <div className="flex h-[56px] items-center sm:h-[68px] lg:h-[88px]">
-            {/* Logo */}
+            {/* Logo - Optimized with prefetch */}
             <div className="flex-shrink-0">
               <Link
                 href="/"
+                prefetch={true}
                 className="cursor-pointer whitespace-nowrap text-xl font-black leading-none text-[#FF6B00] sm:text-2xl lg:text-[32px] xl:text-[38px]"
               >
                 Wengdo
@@ -97,6 +168,7 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
+                      prefetch={true}
                       className={`group relative cursor-pointer py-2 text-[18px] font-bold transition-colors duration-300 ${
                         active
                           ? "text-[#1F1F1F]"
@@ -104,7 +176,6 @@ export default function Header() {
                       }`}
                     >
                       {item.name}
-
                       <span
                         className={`absolute -bottom-1 left-1/2 h-[3px] -translate-x-1/2 rounded-full bg-[#FFB400] transition-all duration-300 ${
                           active ? "w-[52px]" : "w-0 group-hover:w-[52px]"
@@ -116,48 +187,35 @@ export default function Header() {
               </div>
             </nav>
 
-            {/* Desktop Right Side */}
+            {/* Desktop Right Side - Memoized icons */}
             <div className="ml-auto hidden flex-shrink-0 items-center gap-3 pl-6 lg:flex xl:gap-4 xl:pl-8">
-              {/* Search */}
               <button
-                onClick={() => setSearchOpen(true)}
+                onClick={handleOpenSearch}
                 aria-label="Open search"
                 className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white shadow-lg transition hover:bg-[#FF6B00] hover:text-white"
               >
                 <Search size={20} />
               </button>
 
-              {/* Wishlist */}
               <Link
                 href="/wishlist"
+                prefetch={true}
                 aria-label="Open wishlist"
                 className="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white shadow-lg transition hover:bg-[#FF6B00] hover:text-white"
               >
                 <Heart size={20} />
-
-                {mounted && wishlist.length > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
-                    {wishlist.length}
-                  </span>
-                )}
+                {wishlistCount}
               </Link>
 
-              {/* Cart */}
               <button
-                onClick={() => setCartOpen(true)}
+                onClick={handleOpenCart}
                 aria-label="Open shopping cart"
                 className="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white shadow-lg transition hover:bg-[#FF6B00] hover:text-white"
               >
                 <ShoppingCart size={20} />
-
-                {mounted && totalItems > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
-                    {totalItems}
-                  </span>
-                )}
+                {cartCount}
               </button>
 
-              {/* Phone */}
               <a
                 href="tel:+923001234567"
                 className="flex cursor-pointer items-center gap-2 rounded-full border border-[#ECECEC] bg-white px-4 py-2 shadow-lg transition hover:border-[#FFD54A]"
@@ -165,18 +223,15 @@ export default function Header() {
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF5E9]">
                   <PhoneCall size={16} className="text-[#FF6B00]" />
                 </div>
-
                 <div className="hidden 2xl:block">
                   <p className="text-xs text-gray-500">Call Us</p>
-
                   <p className="whitespace-nowrap text-base font-black">
                     +92 300 1234567
                   </p>
                 </div>
               </a>
 
-              {/* Order Button */}
-              <Link href="/shop">
+              <Link href="/shop" prefetch={true}>
                 <Button className="h-12 min-w-[140px] cursor-pointer rounded-full text-base font-bold whitespace-nowrap">
                   Order Now
                 </Button>
@@ -185,7 +240,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setMobileOpen(true)}
+              onClick={handleOpenMobile}
               aria-label="Open mobile menu"
               className="ml-auto flex cursor-pointer items-center justify-center rounded-full bg-white p-2 shadow-lg sm:p-2.5 md:p-3 lg:hidden"
             >
@@ -208,14 +263,12 @@ export default function Header() {
               transition={{ duration: 0.35 }}
               className="absolute right-0 top-0 flex h-full w-[280px] flex-col bg-white p-5 sm:w-[320px] sm:p-8"
             >
-              {/* Mobile Menu Header */}
               <div className="mb-6 flex items-center justify-between sm:mb-10">
                 <h2 className="text-2xl font-black text-[#FF6B00] sm:text-3xl">
                   Wengdo
                 </h2>
-
                 <button
-                  onClick={() => setMobileOpen(false)}
+                  onClick={handleCloseMobile}
                   aria-label="Close mobile menu"
                   className="cursor-pointer text-3xl sm:text-4xl"
                 >
@@ -223,77 +276,39 @@ export default function Header() {
                 </button>
               </div>
 
-              {/* Mobile Navigation */}
               <nav className="space-y-4 sm:space-y-6">
-                {navLinks.map((item) => {
-                  const active =
-                    item.href === "/"
-                      ? pathname === "/"
-                      : pathname.startsWith(item.href);
-
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block cursor-pointer text-base font-semibold sm:text-lg ${
-                        active
-                          ? "text-[#FF6B00]"
-                          : "text-[#1F1F1F]"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  );
-                })}
+                <NavLinks pathname={pathname} onMobileClose={handleCloseMobile} />
               </nav>
 
-              {/* Mobile Wishlist & Cart */}
               <div className="mt-6 flex items-center gap-3 sm:mt-8 sm:gap-4">
                 <Link
                   href="/wishlist"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={handleCloseMobile}
                   aria-label="Open wishlist"
                   className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#FFF8EE] transition hover:bg-[#FF6B00] hover:text-white sm:h-12 sm:w-12"
                 >
                   <Heart size={18} className="sm:hidden" />
                   <Heart size={20} className="hidden sm:block" />
-
-                  {mounted && wishlist.length > 0 && (
-                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
-                      {wishlist.length}
-                    </span>
-                  )}
+                  {wishlistCount}
                 </Link>
 
                 <button
                   onClick={() => {
-                    setMobileOpen(false);
-                    setCartOpen(true);
+                    handleCloseMobile();
+                    handleOpenCart();
                   }}
                   aria-label="Open shopping cart"
                   className="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#FFF8EE] transition hover:bg-[#FF6B00] hover:text-white sm:h-12 sm:w-12"
                 >
                   <ShoppingCart size={18} className="sm:hidden" />
                   <ShoppingCart size={20} className="hidden sm:block" />
-
-                  {mounted && totalItems > 0 && (
-                    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6B00] text-[10px] font-bold text-white">
-                      {totalItems}
-                    </span>
-                  )}
+                  {cartCount}
                 </button>
               </div>
 
-              {/* Mobile Order Button */}
               <div className="mt-6 sm:mt-10">
-                <Link
-                  href="/shop"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <Button className="w-full cursor-pointer">
-                    Order Now
-                  </Button>
+                <Link href="/shop" onClick={handleCloseMobile}>
+                  <Button className="w-full cursor-pointer">Order Now</Button>
                 </Link>
               </div>
             </motion.div>
@@ -301,17 +316,9 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Search Modal */}
-      <SearchModal
-        open={searchOpen}
-        onClose={() => setSearchOpen(false)}
-      />
-
-      {/* Cart Drawer */}
-      <CartDrawer
-        open={cartOpen}
-        onClose={() => setCartOpen(false)}
-      />
+      {/* Modals with lazy loading potential */}
+      <SearchModal open={searchOpen} onClose={handleCloseSearch} />
+      <CartDrawer open={cartOpen} onClose={handleCloseCart} />
     </>
   );
 }

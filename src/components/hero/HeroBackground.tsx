@@ -1,26 +1,14 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 export default function HeroBackground() {
   return (
     <>
       {/* Main Yellow Circle */}
-      <motion.div
-        animate={{
-          scale: [1, 1.04, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      <div
         className="
           absolute
-          right--180px
+          -right-[180px]
           top-1/2
-          h-850px
-          w-850px
+          h-[850px]
+          w-[850px]
           -translate-y-1/2
           rounded-full
           bg-[#FFD54A]
@@ -28,21 +16,13 @@ export default function HeroBackground() {
       />
 
       {/* White Circle */}
-      <motion.div
-        animate={{
-          rotate: 360,
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 60,
-          ease: "linear",
-        }}
+      <div
         className="
           absolute
-          right-140px
+          -right-[140px]
           top-1/2
-          h-620px
-          w-620px
+          h-[620px]
+          w-[620px]
           -translate-y-1/2
           rounded-full
           border
@@ -54,7 +34,7 @@ export default function HeroBackground() {
       <div
         className="
           absolute
-          right-180px
+          -right-[180px]
           top-[20%]
           h-72
           w-72
@@ -68,8 +48,8 @@ export default function HeroBackground() {
       <div
         className="
           absolute
-          left--120px
-          bottom--100px
+          -left-[120px]
+          -bottom-[100px]
           h-80
           w-80
           rounded-full
@@ -79,12 +59,7 @@ export default function HeroBackground() {
       />
 
       {/* Small Floating Circles */}
-      <motion.div
-        animate={{ y: [0, -20, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 5,
-        }}
+      <div
         className="
           absolute
           left-[10%]
@@ -96,12 +71,7 @@ export default function HeroBackground() {
         "
       />
 
-      <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{
-          repeat: Infinity,
-          duration: 6,
-        }}
+      <div
         className="
           absolute
           right-[35%]
@@ -113,18 +83,11 @@ export default function HeroBackground() {
         "
       />
 
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 4,
-        }}
+      <div
         className="
           absolute
-          top-[30%]
           left-[30%]
+          top-[30%]
           h-4
           w-4
           rounded-full
@@ -135,19 +98,13 @@ export default function HeroBackground() {
       {/* Decorative Dots */}
       <div className="absolute left-[8%] top-[60%] grid grid-cols-3 gap-3 opacity-25">
         {Array.from({ length: 9 }).map((_, index) => (
-          <div
-            key={index}
-            className="h-2 w-2 rounded-full bg-[#FF6B00]"
-          />
+          <div key={index} className="h-2 w-2 rounded-full bg-[#FF6B00]" />
         ))}
       </div>
 
       <div className="absolute right-[12%] top-[18%] grid grid-cols-3 gap-3 opacity-25">
         {Array.from({ length: 9 }).map((_, index) => (
-          <div
-            key={index}
-            className="h-2 w-2 rounded-full bg-white"
-          />
+          <div key={index} className="h-2 w-2 rounded-full bg-white" />
         ))}
       </div>
     </>

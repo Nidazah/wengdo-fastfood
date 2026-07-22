@@ -5,7 +5,6 @@ import { blogPosts } from "@/data/blogData";
 import BlogHero from "@/components/blog-details/BlogHero";
 import BlogDetails from "@/components/blog-details/BlogDetails";
 import Container from "@/components/common/Container";
-import PageTransition from "@/components/common/PageTransition";
 
 interface BlogDetailsPageProps {
   params: Promise<{
@@ -53,7 +52,7 @@ export default async function BlogDetailsPage({
   const { id } = await params;
 
   return (
-    <PageTransition>
+    <main>
       {/* Blog Hero */}
       <BlogHero />
 
@@ -65,6 +64,6 @@ export default async function BlogDetailsPage({
           </div>
         </Container>
       </section>
-    </PageTransition>
+    </main>
   );
 }

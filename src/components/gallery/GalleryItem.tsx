@@ -4,36 +4,53 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
-interface Props {
+interface GalleryItemProps {
   image: string;
 }
 
-export default function GalleryItem({ image }: Props) {
+export default function GalleryItem({
+  image,
+}: GalleryItemProps) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
-      className="group relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-[30px]"
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-xl
+
+        sm:rounded-2xl
+
+        md:rounded-[30px]
+      "
     >
       <Image
         src={image}
-        alt="Gallery"
+        alt="Wengdo food gallery"
         width={500}
         height={500}
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
+        sizes="
+          (max-width: 640px) 50vw,
+          (max-width: 1024px) 50vw,
+          33vw
+        "
         className="
           h-[150px]
-          sm:h-[240px]
-          md:h-[300px]
-          lg:h-[340px]
           w-full
           object-cover
           transition-all
           duration-500
           group-hover:scale-110
+
+          sm:h-[240px]
+
+          md:h-[300px]
+
+          lg:h-[340px]
         "
       />
 
-      {/* Overlay */}
       <div
         className="
           absolute
@@ -52,10 +69,6 @@ export default function GalleryItem({ image }: Props) {
             flex
             h-9
             w-9
-            sm:h-12
-            sm:w-12
-            md:h-16
-            md:w-16
             scale-75
             items-center
             justify-center
@@ -66,11 +79,28 @@ export default function GalleryItem({ image }: Props) {
             duration-300
             group-hover:scale-100
             group-hover:opacity-100
+
+            sm:h-12
+            sm:w-12
+
+            md:h-16
+            md:w-16
           "
         >
-          <Plus size={16} className="text-white sm:hidden" />
-          <Plus size={22} className="hidden text-white sm:block md:hidden" />
-          <Plus size={28} className="hidden text-white md:block" />
+          <Plus
+            size={16}
+            className="text-white sm:hidden"
+          />
+
+          <Plus
+            size={22}
+            className="hidden text-white sm:block md:hidden"
+          />
+
+          <Plus
+            size={28}
+            className="hidden text-white md:block"
+          />
         </div>
       </div>
     </motion.div>

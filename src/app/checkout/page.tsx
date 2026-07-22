@@ -2,7 +2,6 @@ import Checkout from "@/components/checkout/Checkout";
 
 import type { Metadata } from "next";
 
-import PageTransition from "@/components/common/PageTransition";
 
 export const metadata: Metadata = {
   title: "Checkout",
@@ -11,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function CheckoutPage() {
   return (
-    <PageTransition>
+    <main>
       <Checkout />
-    </PageTransition>
+    </main>
   );
 }

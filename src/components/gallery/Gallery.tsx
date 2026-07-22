@@ -17,7 +17,21 @@ export default function Gallery() {
           title="Delicious Food Gallery"
         />
 
-        <div className="mt-8 sm:mt-14 md:mt-16 grid grid-cols-2 gap-3 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className="
+            mt-8
+            grid
+            grid-cols-2
+            gap-3
+
+            sm:mt-14
+            sm:gap-8
+
+            md:mt-16
+
+            lg:grid-cols-3
+          "
+        >
           {gallery.map((image, index) => (
             <motion.div
               key={image}
@@ -29,7 +43,9 @@ export default function Gallery() {
                 opacity: 1,
                 y: 0,
               }}
-              viewport={{ once: true }}
+              viewport={{
+                once: true,
+              }}
               transition={{
                 delay: index * 0.1,
               }}

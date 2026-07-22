@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import PageTransition from "@/components/common/PageTransition";
 import OrderSuccess from "@/components/order-success/OrderSuccess";
 
 export const metadata: Metadata = {
@@ -10,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function OrderSuccessPage() {
   return (
-    <PageTransition>
+    <main>
       <OrderSuccess />
-    </PageTransition>
+    </main>
   );
 }

@@ -7,7 +7,6 @@ import ProductInfo from "@/components/product-details/ProductInfo";
 import ProductTabs from "@/components/product-details/ProductTabs";
 import Reviews from "@/components/product-details/Reviews";
 import RelatedProducts from "@/components/product-details/RelatedProducts";
-import PageTransition from "@/components/common/PageTransition";
 
 type ProductDetailsPageProps = {
   params: Promise<{
@@ -76,7 +75,7 @@ export default async function ProductDetailsPage({
   }
 
   return (
-    <PageTransition>
+    <main>
       <ProductHero product={product} />
 
       <ProductInfo product={product} />
@@ -89,6 +88,6 @@ export default async function ProductDetailsPage({
         currentId={product.id}
         category={product.category}
       />
-    </PageTransition>
+    </main>
   );
 }

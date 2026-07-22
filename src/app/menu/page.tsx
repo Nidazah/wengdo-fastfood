@@ -1,8 +1,9 @@
-import MenuHero from "@/components/menu-page/MenuHero";
-import MenuGrid from "@/components/menu-page/MenuGrid";
-import PageTransition from "@/components/common/PageTransition";
+import type { Metadata } from "next";
 
-export const metadata = {
+import MenuHero from "@/components/menu-page/MenuHero";
+import MenuGrid from "../../components/menu-page/MenuGrid";
+
+export const metadata: Metadata = {
   title: "Menu | Wengdo Fast Food",
   description:
     "Browse our delicious burgers, pizzas, sandwiches, drinks and more.",
@@ -10,9 +11,9 @@ export const metadata = {
 
 export default function MenuPage() {
   return (
-    <PageTransition>
+    <main>
       <MenuHero />
       <MenuGrid />
-    </PageTransition>
+    </main>
   );
 }

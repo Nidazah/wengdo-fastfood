@@ -17,13 +17,35 @@ export default function InstagramFeed() {
           title="Follow Us On Instagram"
         />
 
-        <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+        <div
+          className="
+            mt-8
+            grid
+            grid-cols-2
+            gap-3
+
+            sm:mt-14
+            sm:gap-6
+
+            md:grid-cols-3
+
+            lg:grid-cols-6
+          "
+        >
           {instagramImages.map((image, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              key={image}
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
               transition={{
                 duration: 0.5,
                 delay: index * 0.1,

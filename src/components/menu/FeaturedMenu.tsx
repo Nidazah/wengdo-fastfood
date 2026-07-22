@@ -1,10 +1,7 @@
-"use client";
-
 import Container from "@/components/common/Container";
 import SectionTitle from "@/components/common/SectionTitle";
-
 import MenuCard from "./MenuCard";
-import { menuItems } from "./menuData";
+import { menuItems } from "@/data/menuData";
 
 export default function FeaturedMenu() {
   return (
@@ -15,7 +12,7 @@ export default function FeaturedMenu() {
           title="Choose Your Favorite Food"
         />
 
-        <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-5 md:gap-8 lg:gap-10">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 md:mt-16 md:gap-8 lg:mt-20 lg:gap-10 xl:grid-cols-3">
           {menuItems.map((item) => (
             <MenuCard
               key={item.id}

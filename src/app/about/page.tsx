@@ -1,12 +1,11 @@
+import type { Metadata } from "next";
+
 import AboutHero from "@/components/about/AboutHero";
 import AboutCompany from "@/components/about-page/AboutCompany";
 import WhyChoose from "@/components/features/WhyChoose";
 import Stats from "@/components/stats/Stats";
 import Chefs from "@/components/chefs/Chefs";
 import CTA from "@/components/cta/CTA";
-import PageTransition from "@/components/common/PageTransition";
-
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About | Wengdo Fast Food",
@@ -16,13 +15,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageTransition>
+    <main>
       <AboutHero />
       <AboutCompany />
       <WhyChoose />
       <Stats />
       <Chefs />
       <CTA />
-    </PageTransition>
+    </main>
   );
 }
